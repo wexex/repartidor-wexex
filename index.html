@@ -1,0 +1,155 @@
+<!--
+Mi WeWasa de Reparto 1.4.6 
+-->
+
+<!DOCTYPE html>
+<html lang="es">
+<link rel="stylesheet" href="style.css">
+<script defer src="script.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repartidor Victor Wexex</title>
+</head>
+<body>
+    <header>
+        <img src="./imgs/wasa_foto_perfil.png" alt="Perfil">
+        <div>
+            <h1>Repartidor Victor Wexex</h1>
+            <p>Tu repartidor de confianza en Los Alcores.</p>
+        </div>
+    </header>
+    <section>
+        <!-- QUIEN SOY -->
+        <div class="mensaje">
+            <p>
+                <strong>🧍‍♂️¿Quién soy?:</strong>
+                <br>Me llamo <u>Víctor Manuel Guerrero Roldán</u> Alias "<u>Wexex</u>", soy <u>Repartidor</u>, con más de 10 años de experiencia en el sector alimenticio 🍞 y 3 años en reparto urbano 🛵.
+                <br>He trabajado como repartidor de pan, y actualmente reparto comida 🍔, paquetes 📦 y todo tipo de encargos con rapidez ⚡, seguridad 🔒 y conocimiento real de las zonas 🗺️
+            </p>
+        </div>
+        <!-- EXPERIENCIA -->
+        <div class="mensaje">
+            <p>
+                <strong>💼 Experiencia:</strong>
+                <br>He trabajado con Uber Eats 🍽, Glovo🎈, y restaurantes como Tutto Italia🍕, Bugs Burger🍔, King Doner Kebab Los Alcores 🥙 🌯
+                <br>📊 Hago entre 20 y 40 entregas diarias en locales de comida y hasta 48 servicios diarios en reparto independiente.
+                <br>⏱️ Tardo menos de 5 minutos en completar cada entrega según mis estadísticas.            
+            </p>
+        </div>
+        <!-- MI EQUIPO -->
+        <div class="mensaje">
+            <p>
+                <strong>🛵 Mi equipo:</strong>
+                <br>Cuento con 2️⃣ motos eléctricas🔌 idénticas, con baterías🔋 extraíbles e intercambiables 🔄
+                <br>Autonomía de 160 a 200 km🔋🔥 y hasta 6 ⏱️ de trabajo continuo en total💪
+                <br>✅ Casco con comunicador 🪖📞
+                <br>✅ Mochilas herméticas telescópicas 90/180 L 🎒
+                <br>✅ Ropa técnica de trabajo 🧤👔👖🥾 🦺
+                <br>✅ Cajón 🧊 de reparto de 90 L 💧
+            </p>
+        </div>
+        <!-- ZONAS DE TRABAJO -->
+        <div class="mensaje">
+            <p>
+                <strong>📍 Zonas de reparto:</strong>
+                <br>Trabajo principalmente en Mairena del Alcor📍, El Viso del Alcor📍 y zonas adyacentes 🗺️ 
+                <br>Gracias a mi conocimiento local 🧭 llego antes de que el local se dé cuenta del pedido 😎👍
+                <br>🗣️ Frase real: “¿Ya has llegao 😲? ¡Pero si el pedido ni me ha salío aún 😂!”
+            </p>
+        </div>
+        <!-- SERVICIOS -->
+        <div class="mensaje">
+            <p>
+                <strong>🚚 Servicios:</strong>
+                <br>- Entregas/recados inmediatas y programadas ⚡🗓️
+                <br>- Alimentos🍞, farmacias 💊, paquetería 📦, artículos 🛍️ o incluso transporte de mascotas 🐾
+                <br>- Entrega en puerta 🚪, aparcamientos 🚗, locales/trabajo 🏢, bloques 🏬, urbanizaciones 🏡
+                <br>- Compatible con múltiples entregas simultáneas, incluso combinadas 🔄📍📦
+            </p>
+        </div>
+        <!-- DISPONIBILIDAD -->
+        <div class="mensaje">
+            <p>
+                <strong>📅 Disponibilidad:</strong>
+                <br>Trabajo de lunes a viernes, fines de semana y festivos incluido 📆🎉
+                <br>Me adapto 🧩 a la gestión del local 👨‍💼 y acepto colaboraciones 🤝 continuas 🔁 o esporádicas ⚡
+            </p>
+        </div>
+        <!-- CONTACTO -->
+        <div class="mensaje">
+            <p>
+                <strong>👉 Contacto directo:</strong>
+                <br>Puedes escribirme ✍️ por WhatsApp 📱, llamada 📞 o correo electrónico 📧
+                <br>Prefiero todo por escrito 📝 para una gestión 🗂️ más clara 🔍 y eficaz 👌
+                <br>📝 Escríbeme por
+                <!-- CONTACTO_BOTON -->
+                <a class="contacto_boton_whatsapp" href="https://api.whatsapp.com/send?phone=34635291704" target="_blank">WhatsApp</a> 📲
+            </p>
+        </div>
+        <!-- CALCULADOR DE PEDIDO -->
+        <div class="calculador_pedido">
+            <p>    
+                <strong>🧮 CALCULA TU PEDIDO:</strong>
+                <br><br>
+                <form onsubmit="event.preventDefault(); calcularPedido();">
+                    <label for="distancia">Distancia (km):</label>
+                        <input type="number" id="distancia" min="0" step="any" value="1">
+
+                    <label for="transporte">Tipo de transporte:</label>
+                    <select id="transporte">
+                        <option value="0.35">Recado ⚡ (+0,35 €)</option>
+                        <option value="0.55">Alimento 🍔 (+0,55 €)</option>
+                        <option value="0.20">Paquetería 📦 (+0,20 €)</option>
+                        <option value="2.00">Mascota 🐾 (+2,00 €)</option>
+                    </select>
+                    <button type="submit">Calcular total 💸</button>
+                    <div class="resultado" id="resultado">Esperando datos...</div>
+                    
+                </form>
+            </p>
+        </div>
+        <!-- MENSAJE DE ESTADO DE UBICACIÓN -->
+        <div class="mensaje" id="ubicacion_mensaje">
+            <p id="estado_ubicacion">📡 Obteniendo ubicación...</p>
+        </div>
+        <!-- ORDEN DEL PEDIDO -->
+        <div class="ordenPedido">
+            <p>
+                <strong>✍️ Orden del pedido: </strong>
+                <form onsubmit="ordenPedido(); return false;" style="margin-top: 0.5rem;">
+                    <input type="text" id="nombre_cliente"
+                    placeholder="Tu nombre"
+                    style=" width:          100%;
+                            max-width:      500px;
+                            box-sizing:     border-box;
+                            margin-bottom:  0.5rem;
+                            border-radius:  0.5rem;
+                            padding:        0.5rem;" />
+                    <input type="text" id="direccion_cliente"
+                    placeholder="Dirección: Ej: Calle Alcores, 4, El Viso del Alcor"
+                    style=" width:          100%;
+                            max-width:      500px;
+                            box-sizing:     border-box;
+                            margin-bottom:  0.5rem;
+                            border-radius:  0.5rem;
+                            padding:        0.5rem;" />
+                    
+                    <textarea id="texto_pedido" rows="20" 
+                    placeholder="Ej: Tráeme leche y pan del Mercadona..." 
+                    style=" width:          100%;
+                            max-width:      500px;
+                            box-sizing:     border-box;
+                            margin:         auto; 
+                            border-radius:  0.5rem; 
+                            padding:        0.5rem;"></textarea>
+                    <button type="button" onclick="enviarConUbicacion()">📝 Enviar Orden 👉</button>
+                </form>
+            </p>
+        </div>
+    </section>
+    <footer> 
+        © 2025 Repartidor Victor Wexex🔹Servicio de transporte🔹Profesionalidad asegurada🔹<i>Pasión por el transporte</i>
+    </footer>
+</body>
+</html>
