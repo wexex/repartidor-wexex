@@ -57,10 +57,7 @@ async function geocodificarDireccion(direccion) {
         } else {
             return null; // Dirección no encontrada
         }
-    } catch (error) {
-        console.error("❌ Error en la geocodificación:", error);
-        return null;
-    }
+    } catch (error) { console.error("❌ Error en la geocodificación:", error); return null; }
 }
 
 // Función principal del botón
@@ -78,12 +75,17 @@ async function CALCULADOR_LOCALES() {
 
     if (!clienteCoord) { resultado.innerText = "❌ Dirección no encontrada. Intenta escribirla más completa."; return; }
 
-    const local = localesCoords[idLocal];
-    const distancia = calcularDistanciaCoord(local.lat, local.lon, clienteCoord.lat, clienteCoord.lon);
-    const total = (PRECIO_KM * distancia + ALIMENTO).toFixed(2);
+    const local = localesCoords[idLocal]; // Esto primero sí o sí
 
-    resultado.innerText =
-        `📍 Distancia estimada: ${distancia.toFixed(2)} km\n💰 Precio TOTAL: ${total} €`;
+	const DISTANCIA_BASE = calcularDistanciaCoord(local.lat, local.lon, clienteCoord.lat, clienteCoord.lon);
+
+	const AJUSTE_RUTA_REAL = 1.175;
+	const DISTANCIA = DISTANCIA_BASE * AJUSTE_RUTA_REAL;
+
+	const TOTAL = (PRECIO_KM * DISTANCIA + ALIMENTO).toFixed(2);
+
+
+    resultado.innerText =`📍 Distancia: ${DISTANCIA.toFixed(2)} km\n💰 Precio TOTAL: ${TOTAL} €`;
 }
 
 
@@ -149,7 +151,6 @@ function fondoAleatorioWasa() {
 	// Mostrar en consola
 	console.log(`🖼️ Fondo cargado: wasa_fondo${numero}.jpeg`);
 }
-
 
 
 // Estado de ubicacion al cargar la web
