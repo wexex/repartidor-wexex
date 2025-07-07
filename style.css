@@ -56,7 +56,7 @@ section {
 a.contacto_boton_whatsapp {
 color: white;
 }
-.calculador_pedido {
+.CALCULADOR_DISTANCIA {
 	background-color: #075e54;
 	padding: 0.5rem 0.5rem;         /*Relleno*/
 	border-radius: 1rem;            /*Radio borde*/
@@ -64,17 +64,40 @@ color: white;
 	max-width: 250px;               /* Máximo ancho, se adapta en móviles */
 	margin: 0rem 0rem 1rem auto;    /* Margen */
 }
-.calculador_pedido p {                        /*Parafo*/
+.CALCULADOR_DISTANCIA p {                        /*Parafo*/
 	margin: 0;                      /*Margen*/
 	font-size: 0.9rem;              /*Tamaño fuente*/
 	color: white;                   /*Color texo*/
 }
-.calculador_pedido form {
+.CALCULADOR_DISTANCIA form {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 }
-.calculador_pedido label {
+.CALCULADOR_DISTANCIA label {
+	align-self: flex-start;
+	font-size: 0.9rem;
+	margin-bottom: 0.2rem;
+}
+.CALCULADOR_LOCALES {
+	background-color: #075e54;
+	padding: 0.5rem 0.5rem;         /*Relleno*/
+	border-radius: 1rem;            /*Radio borde*/
+	width: 90%;                     /* Ocupa todo el ancho posible */
+	max-width: 250px;               /* Máximo ancho, se adapta en móviles */
+	margin: 0rem 0rem 1rem auto;    /* Margen */
+}
+.CALCULADOR_LOCALES p {                        /*Parafo*/
+	margin: 0;                      /*Margen*/
+	font-size: 0.9rem;              /*Tamaño fuente*/
+	color: white;                   /*Color texo*/
+}
+.CALCULADOR_LOCALES form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.CALCULADOR_LOCALES label {
 	align-self: flex-start;
 	font-size: 0.9rem;
 	margin-bottom: 0.2rem;

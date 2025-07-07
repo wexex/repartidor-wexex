@@ -8,7 +8,7 @@ let lat = null;
 let lon = null;
 
 
-function calcularPedido() {
+function CALCULADOR_DISTANCIA() {
 	const precioKm = 0.55;
 	const distancia = parseFloat(document.getElementById('distancia').value.replace(',', '.'));
 	const transporte = parseFloat(document.getElementById('transporte').value);
@@ -26,22 +26,28 @@ ${textoPedido}
 
 `
 }
+// ORDEN DE PEDIDO
+function ENVIAR_ORDEN() {
+    var nombre = document.getElementById("CLIENTE_NOMBRE").value.trim();
+    var direccion = document.getElementById("CLIENTE_DIRECCION").value.trim();
+    var textoPedido = document.getElementById("CLIENTE_TEXTO").value.trim();
 
-function enviarConUbicacion() {
-    var nombre = document.getElementById("cliente_nombre").value.trim();
-    var direccion = document.getElementById("cliente_direccion").value.trim();
-    var textoPedido = document.getElementById("cliente_lista").value.trim();
+	// Requisitos
+    if (!nombre) { alert("Por favor, rellena tu nombre."); return; }
+	if (!direccion) { alert("Por favor, rellena tu dirección."); return; }
+	if (!textoPedido) { alert("Por favor, rellena tu lista de pedido."); return; }
+    if (!ubicacionLista) { alert("Espera unos segundos o revisa los permisos."); return; }
 
-    if (!nombre || !direccion || !textoPedido) { alert("Por favor, rellena tu nombre, dirección y el pedido."); return; }
-    if (!ubicacionLista) { alert("Ubicación aún no disponible. Espera unos segundos o revisa los permisos."); return; }
-
+	// Abre una ventana nueva a whatsapp con la orden del pedido
     var mensaje = construirMensaje(nombre, direccion, textoPedido, lat, lon);
     window.open(`https://api.whatsapp.com/send?phone=34635291704&text=${encodeURIComponent(mensaje)}`, '_blank');
 }
 
 function detectarUbicacionInicial() {
-	const direccionInput = document.getElementById('direccion_cliente');
+	const direccionInput = document.getElementById('CLIENTE_DIRECCION');
 
+
+	// Ubicacion no obtenida
 	if (!navigator.geolocation) { console.warn("❌ El navegador no permite obtener ubicación."); return; }
 
 	navigator.geolocation.getCurrentPosition(async function(pos) {
