@@ -90,19 +90,20 @@ Mi WeWasa de Reparto 1.4.6
         <!-- CALCULADOR DE DISTANCIA -->
         <div class="CALCULADOR_DISTANCIA">
             <p>
-                <strong>🧮 CALCULA TU PEDIDO:</strong>
+                <strong>🧮 CALCULADOR DE DISTANCIA:</strong>
                 <br><br>
-                <form onsubmit="event.preventDefault(); calcularPedido();">
-                    <label for="distancia">Distancia (km):</label>
-                    <input type="number" id="distancia" min="0" step="any" value="1">
-                    <label for="transporte">Tipo de transporte:</label>
-                    <select id="transporte">
+                <form onsubmit="event.preventDefault(); CALCULADOR_DISTANCIA();">
+                    <label for="DISTANCIA">Distancia (km):</label>
+                    <input type="number" id="DISTANCIA" min="0" step="any" value="1">
+                    <label for="TRANSPORTE">Tipo de transporte:</label>
+                    <select id="TRANSPORTE">
                         <option value="0.35">Recado ⚡ (+0,35 €)</option>
                         <option value="0.55">Alimento 🍔 (+0,55 €)</option>
                         <option value="0.20">Paquetería 📦 (+0,20 €)</option>
                     </select>
                     <button type="submit">Calcular total 💸</button>
-                    <div class="resultado" id="resultado">Esperando datos...</div>
+                    <div class="CALCULADOR_RESULTADO_DISTANCIA"
+                            id="CALCULADOR_RESULTADO_DISTANCIA">Calculando...</div>
 
                 </form>
             </p>
@@ -110,21 +111,20 @@ Mi WeWasa de Reparto 1.4.6
         <!-- CALCULADOR DE LOCALES -->
         <div class="CALCULADOR_LOCALES">
             <p>
-                <strong>🧮 CALCULA TU PEDIDO:</strong>
+                <strong>🧮 CALCULADOR DE LOCALES:</strong>
                 <br><br>
-                <form onsubmit="event.preventDefault(); calcularPedido();">
-                    <label for="distancia">Distancia (km):</label>
-                    <input type="number" id="distancia" min="0" step="any" value="1">
-                    <label for="transporte">Tipo de transporte:</label>
-                    <select id="transporte">
-                        <option value="local1">McDonalds 🏪🍔🍟</option>
-                        <option value="local2">Tutto Italia 🍽️🍕🍔🍟</option>
-                        <option value="local3">Bugs Burger 🍔🍟🍕</option>
-                        <option value="local4">King Doner Kebab Los Alcores 🥙🌯🍔🍟</option>
+                <form onsubmit="event.preventDefault(); CALCULADOR_LOCALES();">
+                    <select id="locales">
+                        <option value="1">McDonalds 🏪🍔🍟</option>
+                        <option value="2">Tutto Italia 🍽️🍕🍔🍟</option>
+                        <option value="3">King Doner Kebab Los Alcores 🥙🌯🍔🍟</option>
+                        <option value="4">Bugs Burger 🍔🍟🍕</option>
                     </select>
+                    <input type="text" id="CLIENTE_DIRECCION"
+                    placeholder="Dirección: Ej: Calle Alcores, 4, El Viso del Alcor">
                     <button type="submit">Calcular total 💸</button>
-                    <div class="resultado" id="resultado">Esperando datos...</div>
-
+                    <div class="CALCULADOR_RESULTADO_LOCALES"
+                            id="CALCULADOR_RESULTADO_LOCALES">Calculando...</div>
                 </form>
             </p>
         </div>

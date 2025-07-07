@@ -61,7 +61,7 @@ color: white;
 	padding: 0.5rem 0.5rem;         /*Relleno*/
 	border-radius: 1rem;            /*Radio borde*/
 	width: 90%;                     /* Ocupa todo el ancho posible */
-	max-width: 250px;               /* Máximo ancho, se adapta en móviles */
+	max-width: 270px;               /* Máximo ancho, se adapta en móviles */
 	margin: 0rem 0rem 1rem auto;    /* Margen */
 }
 .CALCULADOR_DISTANCIA p {                        /*Parafo*/
@@ -84,7 +84,7 @@ color: white;
 	padding: 0.5rem 0.5rem;         /*Relleno*/
 	border-radius: 1rem;            /*Radio borde*/
 	width: 90%;                     /* Ocupa todo el ancho posible */
-	max-width: 250px;               /* Máximo ancho, se adapta en móviles */
+	max-width: 400px;               /* Máximo ancho, se adapta en móviles */
 	margin: 0rem 0rem 1rem auto;    /* Margen */
 }
 .CALCULADOR_LOCALES p {                        /*Parafo*/
@@ -118,7 +118,18 @@ button {
 	font-weight: bold;
 	margin-top: 0.5rem;
 }
-.resultado {
+.CALCULADOR_RESULTADO_DISTANCIA {
+	background-color: #128c7e;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 0.4rem;
+	margin-top: 0.1rem;
+	margin-bottom: 0.1rem;
+	border-radius: 0.5rem;
+	border: none;
+	font-size: 0.9rem;
+}
+.CALCULADOR_RESULTADO_LOCALES {
 	background-color: #128c7e;
 	width: 100%;
 	box-sizing: border-box;

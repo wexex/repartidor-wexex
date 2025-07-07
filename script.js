@@ -1,6 +1,11 @@
 /*
 Mi WeWasa de Reparto 1.5.0
 */
+// Coordenadas de locales
+// McDonalds	37.38133708612366,  -5.7334867016903175
+// King Doner 	37.383191426656516, -5.727653050379951
+// Tutto Italia 37.38365680055818,  -5.725068291224817
+// Bugs Burger 	37.39445567048347,  -5.715608081800965
 
 // Variables globales para guardar la ubicación
 let ubicacionLista = false;
@@ -9,12 +14,79 @@ let lon = null;
 
 
 function CALCULADOR_DISTANCIA() {
-	const precioKm = 0.55;
-	const distancia = parseFloat(document.getElementById('distancia').value.replace(',', '.'));
-	const transporte = parseFloat(document.getElementById('transporte').value);
-	const total = (precioKm * distancia + transporte).toFixed(2);
-	document.getElementById('resultado').innerText = `💰 Precio TOTAL: ${total} €`;
+	const PRECIO_KM = 0.55;
+	const DISTANCIA = parseFloat(document.getElementById('DISTANCIA').value.replace(',', '.'));
+	const TRANSPORTE = parseFloat(document.getElementById('TRANSPORTE').value);
+	const TOTAL = (PRECIO_KM * DISTANCIA + TRANSPORTE).toFixed(2);
+	document.getElementById('CALCULADOR_RESULTADO_DISTANCIA').innerText = `💰 Precio TOTAL: ${TOTAL} €`;
 }
+
+
+// Coordenadas de locales fijos
+const localesCoords = {
+    1: { nombre: "McDonalds", 		lat: 37.38133708612366, 	lon: -5.7334867016903175 },
+    2: { nombre: "Tutto Italia", 	lat: 37.383191426656516, 	lon: -5.727653050379951 },
+    3: { nombre: "King Doner", 		lat: 37.38365680055818, 	lon: -5.725068291224817 },
+    4: { nombre: "Bugs Burger", 	lat: 37.39445567048347, 	lon: -5.715608081800965 }
+};
+
+// Calcula la distancia con fórmula Haversine
+function calcularDistanciaCoord(lat1, lon1, lat2, lon2) {
+    const R = 6371; // Radio de la Tierra en km
+    const dLat = (lat2 - lat1) * Math.PI / 180;
+    const dLon = (lon2 - lon1) * Math.PI / 180;
+    const a =
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+        Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c;
+}
+
+// Geocodifica dirección escrita → lat/lon
+async function geocodificarDireccion(direccion) {
+    const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(direccion)}`;
+    try {
+        const respuesta = await fetch(url);
+        const datos = await respuesta.json();
+        if (datos.length > 0) {
+            return {
+                lat: parseFloat(datos[0].lat),
+                lon: parseFloat(datos[0].lon)
+            };
+        } else {
+            return null; // Dirección no encontrada
+        }
+    } catch (error) {
+        console.error("❌ Error en la geocodificación:", error);
+        return null;
+    }
+}
+
+// Función principal del botón
+async function CALCULADOR_LOCALES() {
+    const PRECIO_KM = 0.55;
+	const ALIMENTO = 0.55;
+    const idLocal = parseInt(document.getElementById('locales').value);
+    const direccionCliente = document.getElementById('CLIENTE_DIRECCION').value.trim();
+
+    const resultado = document.getElementById('CALCULADOR_RESULTADO_LOCALES');
+
+    if (!direccionCliente) { resultado.innerText = "❌ Escribe una dirección válida."; return; }
+
+    const clienteCoord = await geocodificarDireccion(direccionCliente);
+
+    if (!clienteCoord) { resultado.innerText = "❌ Dirección no encontrada. Intenta escribirla más completa."; return; }
+
+    const local = localesCoords[idLocal];
+    const distancia = calcularDistanciaCoord(local.lat, local.lon, clienteCoord.lat, clienteCoord.lon);
+    const total = (PRECIO_KM * distancia + ALIMENTO).toFixed(2);
+
+    resultado.innerText =
+        `📍 Distancia estimada: ${distancia.toFixed(2)} km\n💰 Precio TOTAL: ${total} €`;
+}
+
+
 
 function construirMensaje(nombre, direccion, textoPedido, lat, lon) {
     return `
@@ -24,8 +96,8 @@ function construirMensaje(nombre, direccion, textoPedido, lat, lon) {
 🫡 ORDEN DEL PEDIDO:
 ${textoPedido}
 
-`
-}
+`; }
+
 // ORDEN DE PEDIDO
 function ENVIAR_ORDEN() {
     var nombre = document.getElementById("CLIENTE_NOMBRE").value.trim();
@@ -118,4 +190,6 @@ window.addEventListener("load", function () {
 window.onload = () => {
 	detectarUbicacionInicial();
 	fondoAleatorioWasa();
+	CALCULADOR_DISTANCIA();
+	CALCULADOR_LOCALES();
 }
