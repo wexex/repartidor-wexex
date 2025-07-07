@@ -88,34 +88,33 @@ Mi WeWasa de Reparto 1.4.6
             </p>
         </div>
         <!-- CALCULADOR DE PEDIDO -->
-<!-- Fragmento del bloque de CALCULADOR DE PEDIDO actualizado con selector de local y dirección auto-escrita -->
-<div class="calculador_pedido">
-    <p>
-        <strong>🧾 CALCULA TU PEDIDO:</strong>
-        <br><br>
-        <form onsubmit="event.preventDefault(); calcularPedidoAvanzado();">
-            <label for="local_salida">Local de salida:</label>
-            <select id="local_salida">
-                <option value="mairena1,sevilla">King Doner Kebab Los Alcores 🥙</option>
-                <option value="mairena2,sevilla">Tutto Italia 🍕</option>
-                <option value="mairena3,sevilla">Bugs Burger 🍔</option>
-            </select>
+        <div class="calculador_pedido">
+            <p>
+                <strong>🧮 CALCULA TU PEDIDO:</strong>
+                <br><br>
+                <form onsubmit="event.preventDefault(); calcularPedido();">
+                    <label for="distancia">Distancia (km):</label>
+                    <input type="number" id="distancia" min="0" step="any" value="1">
 
-            <label for="direccion_auto">Dirección del cliente:</label>
-            <input type="text" id="direccion_auto" placeholder="Tu dirección (se rellena sola)" />
+                    <label for="local">Local:</label>
+                    <select id="local">
+                        <option value="local1">local 1</option>
+                        <option value="local2">local 2</option>
+                        <option value="local3">local 3</option>
+                    </select>
 
-            <label for="transporte">Tipo de transporte:</label>
-            <select id="transporte">
-                <option value="0.35">Recado ⚡ (+0,35 €)</option>
-                <option value="0.55">Alimento 🍔 (+0,55 €)</option>
-                <option value="0.20">Paquetería 📦 (+0,20 €)</option>
-            </select>
-            <button type="submit">💸 Calcular total</button>
-            <div class="resultado" id="resultado">Esperando datos...</div>
-            <div class="resultado" id="distancia_km">Distancia: ...</div>
-        </form>
-    </p>
-</div>
+                    <label for="transporte">Tipo de transporte:</label>
+                    <select id="transporte">
+                        <option value="0.35">Recado ⚡ (+0,35 €)</option>
+                        <option value="0.55">Alimento 🍔 (+0,55 €)</option>
+                        <option value="0.20">Paquetería 📦 (+0,20 €)</option>
+                    </select>
+                    <button type="submit">Calcular total 💸</button>
+                    <div class="resultado" id="resultado">Esperando datos...</div>
+
+                </form>
+            </p>
+        </div>
         <!-- MENSAJE DE ESTADO DE UBICACIÓN -->
         <div class="mensaje" id="ubicacion_mensaje">
             <p id="estado_ubicacion">📡 Obteniendo ubicación...</p>

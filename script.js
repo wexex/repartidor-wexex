@@ -72,11 +72,7 @@ function fondoAleatorioWasa() {
 	console.log(`🖼️ Fondo cargado: wasa_fondo${numero}.jpeg`);
 }
 
-// Al cargar la web
-window.onload = () => {
-	detectarUbicacionInicial();
-	fondoAleatorioWasa();
-}
+
 
 // Estado de ubicacion al cargar la web
 window.addEventListener("load", function () {
@@ -112,67 +108,8 @@ window.addEventListener("load", function () {
 });
 
 
-// Coordenadas fijas de los locales
-const locales = {
-  "mairena1,sevilla": { nombre: "King Doner Kebab", lat: 37.3744, lon: -5.7261 },
-  "mairena2,sevilla": { nombre: "Tutto Italia", lat: 37.3750, lon: -5.7252 },
-  "mairena3,sevilla": { nombre: "Bugs Burger", lat: 37.3739, lon: -5.7248 }
-};
-
-// Calcular distancia con fórmula Haversine
-function calcularDistancia(lat1, lon1, lat2, lon2) {
-  const R = 6371;
-  const dLat = (lat2 - lat1) * Math.PI / 180;
-  const dLon = (lon2 - lon1) * Math.PI / 180;
-  const a =
-    Math.sin(dLat / 2) ** 2 +
-    Math.cos(lat1 * Math.PI / 180) *
-    Math.cos(lat2 * Math.PI / 180) *
-    Math.sin(dLon / 2) ** 2;
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  return R * c;
+// Al cargar la web
+window.onload = () => {
+	detectarUbicacionInicial();
+	fondoAleatorioWasa();
 }
-
-// Cálculo avanzado
-function calcularPedidoAvanzado() {
-  const localId = document.getElementById("local_salida").value;
-  const transporte = parseFloat(document.getElementById("transporte").value);
-  const local = locales[localId];
-
-  if (!navigator.geolocation) {
-    alert("Geolocalización no soportada");
-    return;
-  }
-
-navigator.geolocation.getCurrentPosition(
-	(pos) => {
-	const latCliente = pos.coords.latitude;
-	const lonCliente = pos.coords.longitude;
-
-	fetch(`https://nominatim.openstreetmap.org/reverse?lat=${latCliente}&lon=${lonCliente}&format=json`)
-	.then(response => response.json())
-	.then(data => {
-		const direccionLegible = data.display_name;
-		document.getElementById("direccion_auto").value = direccionLegible;
-	});
-
-	// Autocompletar campo dirección si está vacío
-	const inputDireccion = document.getElementById("direccion_auto");
-	if (!inputDireccion.value) {
-		inputDireccion.value = `https://www.google.com/maps?q=${latCliente},${lonCliente}`;
-	}
-
-	// Calcular distancia
-	const distancia = calcularDistancia(local.lat, local.lon, latCliente, lonCliente);
-	const distanciaRedondeada = parseFloat(distancia.toFixed(2));
-	const precio = parseFloat((distanciaRedondeada + transporte).toFixed(2));
-
-	document.getElementById("resultado").textContent = `💰 Total estimado: ${precio} €`;
-	document.getElementById("distancia_km").textContent = `📏 Distancia: ${distanciaRedondeada} km`;
-	},
-	(err) => {
-	alert("Error obteniendo ubicación: " + err.message);
-	}
-);
-}
-
