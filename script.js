@@ -111,15 +111,61 @@ window.addEventListener("load", function () {
 			if (estado) { estado.textContent = "⚠️ Tu navegador no soporta geolocalización"; estado.style.color = "orange"; }; }
 });
 
+
+// Coordenadas fijas de los locales
+const locales = {
+  "mairena1,sevilla": { nombre: "King Doner Kebab", lat: 37.3744, lon: -5.7261 },
+  "mairena2,sevilla": { nombre: "Tutto Italia", lat: 37.3750, lon: -5.7252 },
+  "mairena3,sevilla": { nombre: "Bugs Burger", lat: 37.3739, lon: -5.7248 }
+};
+
+// Calcular distancia con fórmula Haversine
 function calcularDistancia(lat1, lon1, lat2, lon2) {
-    const R = 6371; // Radio de la Tierra en km
-    const dLat = (lat2 - lat1) * Math.PI / 180;
-    const dLon = (lon2 - lon1) * Math.PI / 180;
-    const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-              Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
-              Math.sin(dLon/2) * Math.sin(dLon/2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    return (R * c).toFixed(2); // Resultado en km con 2 decimales
+  const R = 6371;
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLon = (lon2 - lon1) * Math.PI / 180;
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(lat1 * Math.PI / 180) *
+    Math.cos(lat2 * Math.PI / 180) *
+    Math.sin(dLon / 2) ** 2;
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  return R * c;
 }
 
+// Cálculo avanzado
+function calcularPedidoAvanzado() {
+  const localId = document.getElementById("local_salida").value;
+  const transporte = parseFloat(document.getElementById("transporte").value);
+  const local = locales[localId];
+
+  if (!navigator.geolocation) {
+    alert("Geolocalización no soportada");
+    return;
+  }
+
+  navigator.geolocation.getCurrentPosition(
+    (pos) => {
+      const latCliente = pos.coords.latitude;
+      const lonCliente = pos.coords.longitude;
+
+      // Autocompletar campo dirección si está vacío
+      const inputDireccion = document.getElementById("direccion_auto");
+      if (!inputDireccion.value) {
+        inputDireccion.value = `https://www.google.com/maps?q=${latCliente},${lonCliente}`;
+      }
+
+      // Calcular distancia
+      const distancia = calcularDistancia(local.lat, local.lon, latCliente, lonCliente);
+      const distanciaRedondeada = parseFloat(distancia.toFixed(2));
+      const precio = parseFloat((distanciaRedondeada + transporte).toFixed(2));
+
+      document.getElementById("resultado").textContent = `💰 Total estimado: ${precio} €`;
+      document.getElementById("distancia_km").textContent = `📏 Distancia: ${distanciaRedondeada} km`;
+    },
+    (err) => {
+      alert("Error obteniendo ubicación: " + err.message);
+    }
+  );
+}
 
