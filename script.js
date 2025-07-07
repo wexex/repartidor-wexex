@@ -28,9 +28,9 @@ ${textoPedido}
 }
 
 function enviarConUbicacion() {
-    var nombre = document.getElementById("nombre_cliente").value.trim();
-    var direccion = document.getElementById("direccion_cliente").value.trim();
-    var textoPedido = document.getElementById("texto_pedido").value.trim();
+    var nombre = document.getElementById("cliente_nombre").value.trim();
+    var direccion = document.getElementById("cliente_direccion").value.trim();
+    var textoPedido = document.getElementById("cliente_lista").value.trim();
 
     if (!nombre || !direccion || !textoPedido) { alert("Por favor, rellena tu nombre, dirección y el pedido."); return; }
     if (!ubicacionLista) { alert("Ubicación aún no disponible. Espera unos segundos o revisa los permisos."); return; }
