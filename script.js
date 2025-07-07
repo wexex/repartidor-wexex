@@ -8,60 +8,13 @@ let lat = null;
 let lon = null;
 
 
-// Coordenadas conocidas de locales
-const locales = {
-    mercadona: { lat: 37.3885, lon: -5.7173 },
-    tutto:     { lat: 37.3821, lon: -5.7142 },
-    bugs:      { lat: 37.3839, lon: -5.7158 },
-    kingdoner: { lat: 37.3847, lon: -5.7181 }
-};
-
-// Función para calcular la distancia Haversine
-function calcularDistancia(lat1, lon1, lat2, lon2) {
-    const R = 6371; // Radio tierra en km
-    const dLat = (lat2 - lat1) * Math.PI / 180;
-    const dLon = (lon2 - lon1) * Math.PI / 180;
-    const a =
-        Math.sin(dLat/2) * Math.sin(dLat/2) +
-        Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
-        Math.sin(dLon/2) * Math.sin(dLon/2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-    return R * c;
-}
-
 function calcularPedido() {
-    const localSeleccionado = document.getElementById("local").value;
-    const tipo = parseFloat(document.getElementById("transporte").value);
-
-    if (!localSeleccionado) {
-        alert("Selecciona un local primero.");
-        return;
-    }
-
-    const local = locales[localSeleccionado];
-
-    if (!navigator.geolocation) {
-        document.getElementById("resultado").innerText = "❌ Geolocalización no soportada.";
-        return;
-    }
-
-    navigator.geolocation.getCurrentPosition(
-        function (position) {
-            const clienteLat = position.coords.latitude;
-            const clienteLon = position.coords.longitude;
-            const distancia = calcularDistancia(local.lat, local.lon, clienteLat, clienteLon);
-            const total = (distancia * 1.00 + tipo).toFixed(2);
-
-            document.getElementById("resultado").innerText =
-                `📍 Distancia: ${distancia.toFixed(2)} km\n💰 Total estimado: ${total} €`;
-        },
-        function (error) {
-            document.getElementById("resultado").innerText =
-                `❌ No se pudo obtener tu ubicación.`;
-        }
-    );
+	const precioKm = 0.55;
+	const distancia = parseFloat(document.getElementById('distancia').value.replace(',', '.'));
+	const transporte = parseFloat(document.getElementById('transporte').value);
+	const total = (precioKm * distancia + transporte).toFixed(2);
+	document.getElementById('resultado').innerText = `💰 Precio TOTAL: ${total} €`;
 }
-
 
 function construirMensaje(nombre, direccion, textoPedido, lat, lon) {
     return `
