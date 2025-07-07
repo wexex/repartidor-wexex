@@ -87,32 +87,33 @@ Mi WeWasa de Reparto 1.4.6
                 <a class="contacto_boton_whatsapp" href="https://api.whatsapp.com/send?phone=34635291704" target="_blank">WhatsApp</a> 📲
             </p>
         </div>
+        <!-- CALCULADOR DE PEDIDO -->
         <div class="calculador_pedido">
-        <p><strong>🧮 NUEVO CALCULADOR AUTOMÁTICO:</strong></p>
-        <form onsubmit="event.preventDefault(); calcularConUbicacion();">
+            <p>
+                <strong>🧮 CALCULA TU PEDIDO:</strong>
+                <br><br>
+                <form onsubmit="event.preventDefault(); calcularPedido();">
+                    <label for="distancia">Distancia (km):</label>
+                        <input type="number" id="distancia" min="0" step="any" value="1">
 
-            <label for="local">Selecciona el local:</label>
-            <select id="local">
-            <option value="37.390502,-5.718996">Tutto Italia 🍕</option>
-            <option value="37.387964,-5.720414">Bugs Burger 🍔</option>
-            </select>
+                    <label for="local">Selecciona el local:</label>
+                    <select id="local">
+                    <option value="37.3911,-5.7224">Tutto Italia 🍕</option>
+                    <option value="37.3925,-5.7153">Bugs Burger 🍔</option>
+                    </select>
 
-            <label for="direccionAuto">Tu dirección (editable):</label>
-            <input type="text" id="direccionAuto" placeholder="Obteniendo ubicación..." />
+                    <label for="transporte">Tipo de transporte:</label>
+                    <select id="transporte">
+                        <option value="0.35">Recado ⚡ (+0,35 €)</option>
+                        <option value="0.55">Alimento 🍔 (+0,55 €)</option>
+                        <option value="0.20">Paquetería 📦 (+0,20 €)</option>
+                    </select>
+                    <button type="submit">Calcular total 💸</button>
+                    <div class="resultado" id="resultado">Esperando datos...</div>
 
-            <label for="tipo">Tipo de transporte:</label>
-            <select id="tipo">
-            <option value="0.35">Recado ⚡ (+0,35 €)</option>
-            <option value="0.55">Alimento 🍔 (+0,55 €)</option>
-            <option value="0.20">Paquetería 📦 (+0,20 €)</option>
-            </select>
-
-            <button type="submit">Calcular total 💸</button>
-            <div class="resultado" id="resultadoNuevo">Esperando ubicación...</div>
-
-        </form>
+                </form>
+            </p>
         </div>
-
         <!-- MENSAJE DE ESTADO DE UBICACIÓN -->
         <div class="mensaje" id="ubicacion_mensaje">
             <p id="estado_ubicacion">📡 Obteniendo ubicación...</p>
