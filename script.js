@@ -139,41 +139,40 @@ function calcularPedidoAvanzado() {
   const transporte = parseFloat(document.getElementById("transporte").value);
   const local = locales[localId];
 
-// Obtener dirección legible con Nominatim
-fetch(`https://nominatim.openstreetmap.org/reverse?lat=${latCliente}&lon=${lonCliente}&format=json`)
+  if (!navigator.geolocation) {
+    alert("Geolocalización no soportada");
+    return;
+  }
+
+navigator.geolocation.getCurrentPosition(
+	(pos) => {
+	const latCliente = pos.coords.latitude;
+	const lonCliente = pos.coords.longitude;
+
+	fetch(`https://nominatim.openstreetmap.org/reverse?lat=${latCliente}&lon=${lonCliente}&format=json`)
 	.then(response => response.json())
 	.then(data => {
 		const direccionLegible = data.display_name;
 		document.getElementById("direccion_auto").value = direccionLegible;
 	});
 
-  if (!navigator.geolocation) {
-    alert("Geolocalización no soportada");
-    return;
-  }
+	// Autocompletar campo dirección si está vacío
+	const inputDireccion = document.getElementById("direccion_auto");
+	if (!inputDireccion.value) {
+		inputDireccion.value = `https://www.google.com/maps?q=${latCliente},${lonCliente}`;
+	}
 
-  navigator.geolocation.getCurrentPosition(
-    (pos) => {
-      const latCliente = pos.coords.latitude;
-      const lonCliente = pos.coords.longitude;
+	// Calcular distancia
+	const distancia = calcularDistancia(local.lat, local.lon, latCliente, lonCliente);
+	const distanciaRedondeada = parseFloat(distancia.toFixed(2));
+	const precio = parseFloat((distanciaRedondeada + transporte).toFixed(2));
 
-      // Autocompletar campo dirección si está vacío
-      const inputDireccion = document.getElementById("direccion_auto");
-      if (!inputDireccion.value) {
-        inputDireccion.value = `https://www.google.com/maps?q=${latCliente},${lonCliente}`;
-      }
-
-      // Calcular distancia
-      const distancia = calcularDistancia(local.lat, local.lon, latCliente, lonCliente);
-      const distanciaRedondeada = parseFloat(distancia.toFixed(2));
-      const precio = parseFloat((distanciaRedondeada + transporte).toFixed(2));
-
-      document.getElementById("resultado").textContent = `💰 Total estimado: ${precio} €`;
-      document.getElementById("distancia_km").textContent = `📏 Distancia: ${distanciaRedondeada} km`;
-    },
-    (err) => {
-      alert("Error obteniendo ubicación: " + err.message);
-    }
-  );
+	document.getElementById("resultado").textContent = `💰 Total estimado: ${precio} €`;
+	document.getElementById("distancia_km").textContent = `📏 Distancia: ${distanciaRedondeada} km`;
+	},
+	(err) => {
+	alert("Error obteniendo ubicación: " + err.message);
+	}
+);
 }
 
