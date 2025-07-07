@@ -111,5 +111,64 @@ window.addEventListener("load", function () {
 			if (estado) { estado.textContent = "⚠️ Tu navegador no soporta geolocalización"; estado.style.color = "orange"; }; }
 });
 
+// Coordenadas del cliente
+let latCliente = null;
+let lonCliente = null;
+
+// Obtener ubicación automáticamente al cargar
+window.addEventListener("load", function () {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      function (position) {
+        latCliente = position.coords.latitude;
+        lonCliente = position.coords.longitude;
+
+        // Mostrar la dirección como texto editable (formato coordenadas)
+        const direccionInput = document.getElementById("direccionAuto");
+        direccionInput.value = `Lat: ${latCliente.toFixed(5)}, Lon: ${lonCliente.toFixed(5)}`;
+
+        document.getElementById("resultadoNuevo").textContent = "✅ Ubicación lista. Puedes editar tu dirección si quieres.";
+      },
+      function (error) {
+        document.getElementById("resultadoNuevo").textContent = "❌ No se pudo obtener ubicación.";
+      }
+    );
+  } else {
+    document.getElementById("resultadoNuevo").textContent = "❌ Tu navegador no soporta geolocalización.";
+  }
+});
+
+// Función para calcular distancia y precio
+function calcularConUbicacion() {
+  const localCoords = document.getElementById("local").value.split(",");
+  const tipoExtra = parseFloat(document.getElementById("tipo").value);
+
+  if (latCliente === null || lonCliente === null) {
+    alert("La ubicación aún no se ha obtenido. Espera unos segundos.");
+    return;
+  }
+
+  const latLocal = parseFloat(localCoords[0]);
+  const lonLocal = parseFloat(localCoords[1]);
+
+  const distancia = calcularDistanciaKm(latCliente, lonCliente, latLocal, lonLocal);
+  const precioKm = 1.0; // € por kilómetro
+  const total = (distancia * precioKm + tipoExtra).toFixed(2);
+
+  document.getElementById("resultadoNuevo").innerHTML =
+    `📏 Distancia: ${distancia.toFixed(2)} km<br>💶 Total estimado: ${total} €`;
+}
+
+// Fórmula Haversine
+function calcularDistanciaKm(lat1, lon1, lat2, lon2) {
+  const R = 6371; // Radio de la Tierra en km
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLon = (lon2 - lon1) * Math.PI / 180;
+  const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+            Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+            Math.sin(dLon/2) * Math.sin(dLon/2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  return R * c;
+}
 
 
