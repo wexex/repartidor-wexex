@@ -139,6 +139,14 @@ function calcularPedidoAvanzado() {
   const transporte = parseFloat(document.getElementById("transporte").value);
   const local = locales[localId];
 
+// Obtener dirección legible con Nominatim
+fetch(`https://nominatim.openstreetmap.org/reverse?lat=${latCliente}&lon=${lonCliente}&format=json`)
+	.then(response => response.json())
+	.then(data => {
+		const direccionLegible = data.display_name;
+		document.getElementById("direccion_auto").value = direccionLegible;
+	});
+
   if (!navigator.geolocation) {
     alert("Geolocalización no soportada");
     return;
