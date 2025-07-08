@@ -1,5 +1,5 @@
 /*
-Mi WeWasa de Reparto 1.3.5
+Mi WeWasa de Reparto 1.5.0
 */
 
 body {
@@ -35,6 +35,20 @@ header h1 {
 header p {
 	font-size: 0.85rem;
 	margin: 0;
+}
+#reloj-digital {
+    margin-left: auto;
+    margin-right: 1.5rem;
+    font-size: 0.9rem;
+    color: white;
+    font-weight: bold;
+
+	background-color: #075e54;      /*Color fondo*/
+	padding: 0.5rem 0.5rem;         /*Relleno*/
+	border-radius: 1rem;            /*Radio borde*/
+	width: 100%;                     /* Ocupa todo el ancho posible */
+	max-width: 75px;               /* Máximo ancho, se adapta en móviles */
+	margin: 0rem 0rem 1rem auto;    /* Margen */
 }
 section {
 	padding: 5.5rem 1rem 1rem 1rem;
@@ -169,3 +183,65 @@ footer {
 	padding: 1rem;
 	font-size: 0.9rem;
 }
+
+.selector-locales {
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+	margin-top: 0.5rem;
+	margin-bottom: 0.5rem;
+}
+.selector-locales button {
+	background-color: #2e7d32;
+	color: white;
+	padding: 0.6rem 1rem;
+	border-radius: 0.5rem;
+	border: none;
+	font-weight: bold;
+	font-size: 1rem;			/*TAMAÑO FUENTE*/
+	cursor: pointer;
+}
+.selector-locales button:hover {
+	background-color: #43a047;
+}
+
+.menu-local {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 0.25rem;
+	margin-top: 0.5rem;
+}
+.menu-local button {
+	background-color: #128c7e;
+	color: white;
+	padding: auto;
+	border-radius: 0.5rem;
+	border: none;
+	font-weight: bold;
+	font-size: 0.9rem;			/*TAMAÑO FUENTE*/
+	cursor: pointer;
+	transition: 0.2s ease all;
+}
+.menu-local button:hover {
+	background-color: #25d366;
+}
+
+.boton-cerrar-menu {
+	grid-column: span 4;
+	background-color: #2e7d32;
+	color: white;
+	padding: 0.5rem;
+	border-radius: 0.5rem;
+	border: none;
+	font-weight: bold;
+	font-size: 1rem;
+	margin-top: 0.5rem;
+	cursor: pointer;
+}
+.boton-cerrar-menu:hover {
+	background-color: #e53935;
+}
+
+
+

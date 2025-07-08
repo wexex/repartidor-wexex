@@ -1,5 +1,5 @@
 <!--
-Mi WeWasa de Reparto 1.4.6
+Mi WeWasa de Reparto 1.5.0
 -->
 
 <!DOCTYPE html>
@@ -20,6 +20,7 @@ Mi WeWasa de Reparto 1.4.6
         </div>
     </header>
     <section>
+
         <!-- QUIEN SOY -->
         <div class="mensaje">
             <p>
@@ -120,7 +121,7 @@ Mi WeWasa de Reparto 1.4.6
                         <option value="3">King Doner Kebab Los Alcores 🥙🌯🍔🍟</option>
                         <option value="4">Bugs Burger 🍔🍟🍕</option>
                     </select>
-                    <input type="text" id="CLIENTE_DIRECCION"
+                    <input type="text" id="CLIENTE_DIRECCION_LOCAL"
                     placeholder="Dirección: Ej: Calle Alcores, 4, El Viso del Alcor">
                     <button type="submit">Calcular total 💸</button>
                     <div class="CALCULADOR_RESULTADO_LOCALES"
@@ -132,10 +133,13 @@ Mi WeWasa de Reparto 1.4.6
         <div class="mensaje" id="ubicacion_mensaje">
             <p id="estado_ubicacion">📡 Obteniendo ubicación...</p>
         </div>
+        <!-- RELOJ DIGITAL -->
+        <div id="reloj-digital">
+        </div>
         <!-- ORDEN DEL PEDIDO -->
         <div class="ordenPedido">
             <p>
-                <strong>✍️ Orden del pedido: </strong>
+            <strong>✍️ Orden del pedido: </strong>
                 <form onsubmit="ordenPedido(); return false;" style="margin-top: 0.5rem;">
                     <input type="text" id="CLIENTE_NOMBRE"
                     placeholder="Tu nombre"
@@ -145,7 +149,7 @@ Mi WeWasa de Reparto 1.4.6
                             margin-bottom:  0.5rem;
                             border-radius:  0.5rem;
                             padding:        0.5rem;" />
-                    <input type="text" id="CLIENTE_DIRECCION"
+                    <input type="text" id="CLIENTE_DIRECCION_ORDEN"
                     placeholder="Dirección: Ej: Calle Alcores, 4, El Viso del Alcor"
                     style=" width:          100%;
                             max-width:      500px;
@@ -165,6 +169,16 @@ Mi WeWasa de Reparto 1.4.6
                     <button type="button" onclick="ENVIAR_ORDEN()">📝 Enviar Orden 👉</button>
                 </form>
             </p>
+        </div>
+        <!-- SELECCIÓN DE LOCAL Y MENÚ -->
+        <div class="mensaje">
+            <p><strong>📋 Selecciona un local:</strong></p>
+            <div class="selector-locales">
+                <button onclick="mostrarMenu('mcdonalds')">🍔 McDonald's</button>
+                <button onclick="mostrarMenu('tutto')">🍕 Tutto Italia</button>
+                <button onclick="mostrarMenu('kingdoner')">🥙 King Döner Kebab(El Viso del Alcor)</button>
+            </div>
+            <div id="menu-local" class="menu-local"></div>
         </div>
     </section>
     <footer>
