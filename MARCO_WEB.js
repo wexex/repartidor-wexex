@@ -1,4 +1,4 @@
-// Mi WeWasa/WasaWe de Reparto 2.0.0 15725
+// Mi WeWasa/WasaWe de Reparto 2.0.1 15725
 //
 // TITULO DE LA PESTAÑA DE LA WEB
 //
@@ -10,10 +10,12 @@ function FONDO_ALEATORIO() {
 	const numero = Math.floor(Math.random() * 6) + 1; 	// 1 al 6
 	const fondo = `./imgs/wasa_fondo${numero}.jpeg`; 	// Ruta del fondo
 
-	document.body.style.backgroundImage=`url(${fondo})`;
-    document.body.style.backgroundRepeat="no-repeat";
-    document.body.style.backgroundPosition="center";
-    document.body.style.backgroundAttachment="fixed";
+    document.body.style.background =            MENSAJE_FONDO_COLOR_ENTRADA;
+	document.body.style.backgroundImage =       `url(${fondo})`;
+    document.body.style.backgroundRepeat =      "no-repeat";
+    document.body.style.backgroundPosition =    "center";
+    document.body.style.backgroundAttachment =  "fixed";
+    document.body.style.backgroundSize =        "cover";
 
 	console.log(`🖼️ Fondo cargado: wasa_fondo${numero}.jpeg`);
 }
