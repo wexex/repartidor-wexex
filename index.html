@@ -1,188 +1,144 @@
-<!--
-Mi WeWasa de Reparto 1.5.0
--->
-
 <!DOCTYPE html>
+<!-- Mi WeWasa/WasaWe de Reparto 2.0.0 15725 -->
 <html lang="es">
-<link rel="stylesheet" href="style.css">
-<script defer src="script.js"></script>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Repartidor Victor Wexex</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="./imgs/favicon.ico" type="image/x-icon">
 </head>
 <body>
-    <header>
-        <img src="./imgs/wasa_foto_perfil.png" alt="Perfil">
-        <div>
-            <h1>Repartidor Victor Wexex</h1>
-            <p>Tu repartidor de confianza en Los Alcores.</p>
-        </div>
-    </header>
-    <section>
-
-        <!-- QUIEN SOY -->
-        <div class="mensaje">
-            <p>
-                <strong>🧍‍♂️¿Quién soy?:</strong>
-                <br>Me llamo <u>Víctor Manuel Guerrero Roldán</u> Alias "<u>Wexex</u>", soy <u>Repartidor</u>, con más de 10 años de experiencia en el sector alimenticio 🍞 y 3 años en reparto urbano 🛵.
-                <br>He trabajado como repartidor de pan, y actualmente reparto comida 🍔, paquetes 📦 y todo tipo de encargos con rapidez ⚡, seguridad 🔒 y conocimiento real de las zonas 🗺️
-            </p>
-        </div>
-        <!-- EXPERIENCIA -->
-        <div class="mensaje">
-            <p>
-                <strong>💼 Experiencia:</strong>
-                <br>He trabajado con Uber Eats 🍽, Glovo🎈, y restaurantes como Tutto Italia🍕, Bugs Burger🍔, King Doner Kebab Los Alcores 🥙 🌯
-                <br>📊 Hago entre 20 y 40 entregas diarias en locales de comida y hasta 48 servicios diarios en reparto independiente.
-                <br>⏱️ Tardo menos de 5 minutos en completar cada entrega según mis estadísticas.
-            </p>
-        </div>
-        <!-- MI EQUIPO -->
-        <div class="mensaje">
-            <p>
-                <strong>🛵 Mi equipo:</strong>
-                <br>Cuento con 2️⃣ motos eléctricas🔌 idénticas, con baterías🔋 extraíbles e intercambiables 🔄
-                <br>Autonomía de 160 a 200 km🔋🔥 y hasta 6 ⏱️ de trabajo continuo en total💪
-                <br>✅ Casco con comunicador 🪖📞
-                <br>✅ Mochilas herméticas telescópicas 90/180 L 🎒
-                <br>✅ Ropa técnica de trabajo 🧤👔👖🥾 🦺
-                <br>✅ Cajón 🧊 de reparto de 90 L 💧
-            </p>
-        </div>
-        <!-- ZONAS DE TRABAJO -->
-        <div class="mensaje">
-            <p>
-                <strong>📍 Zonas de reparto:</strong>
-                <br>Trabajo principalmente en Mairena del Alcor📍, El Viso del Alcor📍 y zonas adyacentes 🗺️
-                <br>Gracias a mi conocimiento local 🧭 llego antes de que el local se dé cuenta del pedido 😎👍
-                <br>🗣️ Frase real: “¿Ya has llegao 😲? ¡Pero si el pedido ni me ha salío aún 😂!”
-            </p>
-        </div>
-        <!-- SERVICIOS -->
-        <div class="mensaje">
-            <p>
-                <strong>🚚 Servicios:</strong>
-                <br>- Entregas/recados inmediatas y programadas ⚡🗓️
-                <br>- Alimentos🍞, farmacias 💊, paquetería 📦, artículos 🛍️
-                <br>- Entrega en puerta 🚪, aparcamientos 🚗, locales/trabajo 🏢, bloques 🏬, urbanizaciones 🏡
-                <br>- Compatible con múltiples entregas simultáneas, incluso combinadas 🔄📍📦
-            </p>
-        </div>
-        <!-- DISPONIBILIDAD -->
-        <div class="mensaje">
-            <p>
-                <strong>📅 Disponibilidad:</strong>
-                <br>Trabajo de lunes a viernes, fines de semana y festivos incluido 📆🎉
-                <br>Me adapto 🧩 a la gestión del local 👨‍💼 y acepto colaboraciones 🤝 continuas 🔁 o esporádicas ⚡
-            </p>
-        </div>
-        <!-- CONTACTO -->
-        <div class="mensaje">
-            <p>
-                <strong>👉 Contacto directo:</strong>
-                <br>Puedes escribirme ✍️ por WhatsApp 📱, llamada 📞 o correo electrónico 📧
-                <br>Prefiero todo por escrito 📝 para una gestión 🗂️ más clara 🔍 y eficaz 👌
-                <br>📝 Escríbeme por
-                <!-- CONTACTO_BOTON -->
-                <a class="contacto_boton_whatsapp" href="https://api.whatsapp.com/send?phone=34635291704" target="_blank">WhatsApp</a> 📲
-            </p>
-        </div>
-        <!-- CALCULADOR DE DISTANCIA -->
-        <div class="CALCULADOR_DISTANCIA">
-            <p>
-                <strong>🧮 CALCULADOR DE DISTANCIA:</strong>
-                <br><br>
-                <form onsubmit="event.preventDefault(); CALCULADOR_DISTANCIA();">
-                    <label for="DISTANCIA">Distancia (km):</label>
-                    <input type="number" id="DISTANCIA" min="0" step="any" value="1">
-                    <label for="TRANSPORTE">Tipo de transporte:</label>
-                    <select id="TRANSPORTE">
-                        <option value="0.35">Recado ⚡ (+0,35 €)</option>
-                        <option value="0.55">Alimento 🍔 (+0,55 €)</option>
-                        <option value="0.20">Paquetería 📦 (+0,20 €)</option>
-                    </select>
-                    <button type="submit">Calcular total 💸</button>
-                    <div class="CALCULADOR_RESULTADO_DISTANCIA"
-                            id="CALCULADOR_RESULTADO_DISTANCIA">Calculando...</div>
-
-                </form>
-            </p>
-        </div>
-        <!-- CALCULADOR DE LOCALES -->
-        <div class="CALCULADOR_LOCALES">
-            <p>
-                <strong>🧮 CALCULADOR DE LOCALES:</strong>
-                <br><br>
-                <form onsubmit="event.preventDefault(); CALCULADOR_LOCALES();">
-                    <select id="locales">
-                        <option value="1">McDonalds 🏪🍔🍟</option>
-                        <option value="2">Tutto Italia 🍽️🍕🍔🍟</option>
-                        <option value="3">King Doner Kebab Los Alcores 🥙🌯🍔🍟</option>
-                        <option value="4">Bugs Burger 🍔🍟🍕</option>
-                    </select>
-                    <input type="text" id="CLIENTE_DIRECCION_LOCAL"
-                    placeholder="Dirección: Ej: Calle Alcores, 4, El Viso del Alcor">
-                    <button type="submit">Calcular total 💸</button>
-                    <div class="CALCULADOR_RESULTADO_LOCALES"
-                            id="CALCULADOR_RESULTADO_LOCALES">Calculando...</div>
-                </form>
-            </p>
-        </div>
-        <!-- MENSAJE DE ESTADO DE UBICACIÓN -->
-        <div class="mensaje" id="ubicacion_mensaje">
-            <p id="estado_ubicacion">📡 Obteniendo ubicación...</p>
-        </div>
-        <!-- RELOJ DIGITAL -->
-        <div id="reloj-digital">
-        </div>
-        <!-- ORDEN DEL PEDIDO -->
-        <div class="ordenPedido">
-            <p>
-            <strong>✍️ Orden del pedido: </strong>
-                <form onsubmit="ordenPedido(); return false;" style="margin-top: 0.5rem;">
-                    <input type="text" id="CLIENTE_NOMBRE"
-                    placeholder="Tu nombre"
-                    style=" width:          100%;
-                            max-width:      500px;
-                            box-sizing:     border-box;
-                            margin-bottom:  0.5rem;
-                            border-radius:  0.5rem;
-                            padding:        0.5rem;" />
-                    <input type="text" id="CLIENTE_DIRECCION_ORDEN"
-                    placeholder="Dirección: Ej: Calle Alcores, 4, El Viso del Alcor"
-                    style=" width:          100%;
-                            max-width:      500px;
-                            box-sizing:     border-box;
-                            margin-bottom:  0.5rem;
-                            border-radius:  0.5rem;
-                            padding:        0.5rem;" />
-
-                    <textarea id="CLIENTE_TEXTO" rows="20"
-                    placeholder="Ej: Tráeme leche y pan del Mercadona..."
-                    style=" width:          100%;
-                            max-width:      500px;
-                            box-sizing:     border-box;
-                            margin:         auto;
-                            border-radius:  0.5rem;
-                            padding:        0.5rem;"></textarea>
-                    <button type="button" onclick="ENVIAR_ORDEN()">📝 Enviar Orden 👉</button>
-                </form>
-            </p>
-        </div>
-        <!-- SELECCIÓN DE LOCAL Y MENÚ -->
-        <div class="mensaje">
-            <p><strong>📋 Selecciona un local:</strong></p>
-            <div class="selector-locales">
-                <button onclick="mostrarMenu('mcdonalds')">🍔 McDonald's</button>
-                <button onclick="mostrarMenu('tutto')">🍕 Tutto Italia</button>
-                <button onclick="mostrarMenu('kingdoner')">🥙 King Döner Kebab(El Viso del Alcor)</button>
-            </div>
-            <div id="menu-local" class="menu-local"></div>
-        </div>
-    </section>
-    <footer>
-        © 2025 Repartidor Victor Wexex🔹Servicio de transporte🔹Profesionalidad asegurada🔹<i>Pasión por el transporte</i>
-    </footer>
 </body>
 </html>
+<script src="./CONST.js"></script>
+<script src="./MARCO_WEB.js"></script>
+<script src="./CALCULADOR_DISTANCIA.js"></script>
+<script src="./ORDEN_PEDIDO.js"></script>
+<script>
+
+// Secciones(Mensajes) de la presentación
+const mensajes = [
+  [` 🧑‍💼 ¿Quién soy?`, `\
+Me llamo Víctor Manuel Guerrero Roldán Alias "Wexex", soy Repartidor, con más de 10 años de experiencia en el sector alimenticio 🍞 y 3 años en reparto urbano <span style='display:inline-block; transform:scaleX(-1);'>🛵</span>
+He trabajado como repartidor de pan, y actualmente reparto comida 🍔, paquetes 📦 y todo tipo de encargos con rapidez ⚡, seguridad 🔒 y conocimiento real de las zonas 🗺️`],
+
+  [` 💼 Experiencia`, `\
+He trabajado con Uber Eats, Glovo🎈, y restaurantes como Tutto Italia🍕, Bugs Burger🍔, King Doner Kebab Los Alcores 🥙 🌯
+📊 Hago entre 20 y 40 entregas diarias en locales de comida y hasta 48 servicios diarios en reparto independiente.
+⏱️ Tardo menos de 5 minutos en completar cada entrega según mis estadísticas.`],
+
+  [` 🛵 Mi equipo`, `\
+Cuento con 2️⃣ motos eléctricas🔌 idénticas, con baterías🔋 extraíbles e intercambiables 🔄
+Autonomía de 160 a 200 km🔋🔥 y hasta 6 ⏱️ de trabajo continuo en total💪
+✅ Casco con comunicador 🪖📞
+✅ Mochilas herméticas telescópicas 90/180 L 🎒
+✅ Ropa técnica de trabajo 🧤👔👖🥾 🦺
+✅ Cajón 🧊 de reparto de 90 L 💧 `],
+
+  [`📍 Zonas de reparto`, `\
+Trabajo principalmente en Mairena del Alcor📍, El Viso del Alcor📍 y zonas adyacentes 🗺️
+Gracias a mi conocimiento local 🧭 llego antes de que el local se dé cuenta del pedido 😎👍
+🗣️ Frase real: “¿Ya has llegao 😲? ¡Pero si el pedido ni me ha salío aún 😂!”`],
+
+  [` 🚚 Servicios`, `\
+- Entregas/recados inmediatas y programadas⚡🗓️
+- Alimentos🍞, farmacias 💊, paquetería 📦, artículos 🛍️
+- Entrega en puerta 🚪, aparcamientos 🚗, locales/trabajo 🏢, bloques 🏬, urbanizaciones 🏡
+- Compatible con múltiples entregas simultáneas, incluso combinadas 🔄📍📦`],
+
+  [` 📅 Disponibilidad`, `\
+Trabajo de lunes a viernes, fines de semana y festivos incluido 📆🎉
+Me adapto 🧩 a la gestión del local 👨‍💼 y acepto colaboraciones 🤝 continuas 🔁 o esporádicas ⚡`],
+
+  [` 👉 Contacto directo`, `\
+Puedes escribirme ✍️ por WhatsApp 📱, llamada 📞 o correo electrónico 📧
+Prefiero todo por escrito 📝 para una gestión 🗂️ más clara 🔍 y eficaz 👌
+📝 Escríbeme por WhatsApp 📲 `],
+
+];
+
+
+// PRESENTACION
+function PRESENTACION() {
+	for (let i = 0; i < mensajes.length; i++) {
+
+		const titulo   = mensajes[i][0];
+		const contenido = mensajes[i][1];
+
+		const mensaje = document.createElement("button");
+
+		mensaje.innerHTML =             	`<strong>${titulo}:</strong>\n${contenido}`;
+
+		mensaje.style.fontSize =        	BASE_TEXTO_TAMANIO;
+		mensaje.style.fontFamily =      	BASE_TEXTO_FUENTE;
+		mensaje.style.color =           	BASE_TEXTO_COLOR;
+		mensaje.style.whiteSpace = 			BASE_TEXTO_ESPACIO_BLANCO;
+		mensaje.style.textAlign = 			BASE_TEXTO_ALINEAMIENTO;
+
+		mensaje.style.backgroundColor =   	BASE_COLOR_FONDO;
+		TEMA_WEWASA(mensaje);
+
+		mensaje.style.width =             	BASE_ANCHO;
+
+		mensaje.style.display =           "block";
+
+		document.body.appendChild(mensaje);
+
+	}
+}
+
+// Selector de locales – McDonals
+function SELECTOR_LOCALES() {
+
+	const mensaje = document.createElement("button");
+	mensaje.innerHTML = 			`<strong> 🍽️ Selecciona local:</strong>\n`;
+	mensaje.style.fontFamily = 		BASE_TEXTO_FUENTE;
+	mensaje.style.fontSize = 		BASE_TEXTO_TAMANIO;
+	mensaje.style.color = 			BASE_TEXTO_COLOR;
+	mensaje.style.backgroundColor = BASE_COLOR_FONDO;
+	TEMA_WEWASA(mensaje);
+	mensaje.style.whiteSpace = 		BASE_TEXTO_ESPACIO_BLANCO;
+	mensaje.style.textAlign = 		BASE_TEXTO_ALINEAMIENTO;
+	mensaje.style.width = 			BASE_ANCHO;
+	mensaje.style.display = 		"flex";
+	mensaje.style.flexDirection = 	"column";
+
+	document.body.appendChild(mensaje);
+
+
+// Lista de locales
+const locales = [
+	{ local: '🍔 McDonals 🍟', 			ruta: 'mcdonals.html' },
+	{ local: '🥙 King Döner Kebab 🌯', 	ruta: 'kingdonerkebab.html' },
+	{ local: '🍝 Tutto Italia 🍕', 		ruta: 'tuttoitalia.html' }
+];
+
+// Generar botones dinámicamente
+	for (const loc of locales) {
+
+		const btn = document.createElement("button");
+
+		btn.textContent = 			loc.local;
+
+		btn.style.fontFamily      = BASE_TEXTO_FUENTE;
+		btn.style.fontSize        = BASE_TEXTO_TAMANIO;
+		btn.style.color           = MENSAJE_TEXTO_COLOR_BOTON;
+		btn.style.backgroundColor = MENSAJE_FONDO_COLOR_BOTON;
+		TEMA_WEWASA_MENU_LOCAL(btn);
+
+		btn.onclick = () => window.location.href = loc.ruta;
+
+		mensaje.appendChild(btn);
+	}
+}
+
+
+MARCO_WEB();
+
+PRESENTACION();
+CALCULADOR_DISTANCIA();
+ORDEN_PEDIDO();
+
+// SELECTOR_LOCALES();
+
+PIE();
+</script>
