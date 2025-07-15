@@ -1,6 +1,6 @@
 # 🛵 Proyecto Personal: Repartidor Wexex
 
-Este proyecto es una **web personal y privada** creada por **Víctor Manuel Guerrero Roldán** (alias **Wexex**) para centralizar su presentación profesional como repartidor en Los Alcores.
+Este proyecto es una **web personal y privada** creada por **Víctor Manuel Guerrero Roldán** (alias **Wexex**) para centralizar su presentación como repartidor en Los Alcores.
 
 > ⚠️ Este proyecto **no acepta contribuciones**, **no busca colaboración**, y **no está destinado al público general**. Su única finalidad es uso comercial.
 
@@ -17,18 +17,17 @@ Incluye:
 - 🛠 Experiencia laboral detallada.
 - 🛵 Equipamiento propio.
 - 🗺 Zonas donde trabaja.
-- 🧮 Calculadora de pedidos rápida.
-- 📡 Geolocalización automática.
-- 📝 Formulario para pedidos personalizados.
-- ✅ Todo integrado en una única página.
+- 🧮 Calculadora de pedidos.
+- 📡 Auto-direccion automática.
+- 📝 Formulario de pedidos.
+- 🎛️ Panel de comida del local
+- ✅ Organizacion modular.
 
 ---
 
 ## ⚙️ Tecnologías Usadas
 
-- HTML5
-- CSS3
-- JavaScript (puro, sin frameworks)
+- JavaScript
 
 ---
 
@@ -36,19 +35,14 @@ Incluye:
 
 Esta web:
 
-- No está pensada para terceros
-- No se distribuye públicamente
-- No está conectada a ninguna API externa salvo WhatsApp
-- Solo se edita por el autor (Wexex)
+- Solo se edita por el autor Victor Guerrero Roldan
 
 ---
 
 ## 🧠 Notas del Autor
 
 - Proyecto inspirado en idea personal de transformar una web en formato “chat visual”.
-- El estilo se adapta bien a móviles.
-- Está pensado para integrarse en un ecosistema más amplio con scripts bash, herramientas personales y automatizaciones.
-
+- El estilo esta orientado a dispositivos móviles.
 ---
 
 © 2025 — **Víctor Manuel Guerrero Roldán** (Wexex)  
